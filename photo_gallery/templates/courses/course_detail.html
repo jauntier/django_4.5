@@ -1,0 +1,18 @@
+{% extends 'courses/base.html' %}
+
+{% block title %}{{ course.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ course.title }}</h1>
+<p>{{ course.description }}</p>
+<h2>Instructor: {{ course.instructor.user.username }}</h2>
+<h3>Students:</h3>
+<ul class="list-group">
+    {% for student in course.students.all %}
+        <li class="list-group-item">
+            <a href="{% url 'student_detail' student.id %}">{{ student.user.username }}</a>
+        </li>
+    {% endfor %}
+</ul>
+<a class="btn btn-secondary mt-3" href="{% url 'index' %}">Back to courses</a>
+{% endblock %}

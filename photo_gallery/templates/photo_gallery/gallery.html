@@ -1,0 +1,14 @@
+{% extends "photo_gallery/base.html" %}
+{% block content %}
+  <div class="gallery">
+    {% for photo in photos %}
+      <div class="photo">
+        <a href="{% url 'photo-detail' photo.pk %}">
+          <img src="{{ photo.image.url }}" alt="{{ photo.title }}">
+        </a>
+        <h3>{{ photo.title }}</h3>
+        <p>{{ photo.description|truncatewords:20 }}</p>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock content %}
